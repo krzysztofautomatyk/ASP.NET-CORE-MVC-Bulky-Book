@@ -7,16 +7,19 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["ASP.NET-CORE-MVC-Bulky-Book/ASP.NET-CORE-MVC-Bulky-Book.csproj", "ASP.NET-CORE-MVC-Bulky-Book/"]
-RUN dotnet restore "ASP.NET-CORE-MVC-Bulky-Book/ASP.NET-CORE-MVC-Bulky-Book.csproj"
+COPY ["ASP.NET-CORE-MVC-Bulky-Book/BulkyBook.csproj", "ASP.NET-CORE-MVC-Bulky-Book/"]
+COPY ["BulkyBook.Utility/BulkyBook.Utility.csproj", "BulkyBook.Utility/"]
+COPY ["BulkyBook.DataAccess/BulkyBook.DataAccess.csproj", "BulkyBook.DataAccess/"]
+COPY ["BulkyBook.Models/BulkyBook.Models.csproj", "BulkyBook.Models/"]
+RUN dotnet restore "ASP.NET-CORE-MVC-Bulky-Book/BulkyBook.csproj"
 COPY . .
 WORKDIR "/src/ASP.NET-CORE-MVC-Bulky-Book"
-RUN dotnet build "ASP.NET-CORE-MVC-Bulky-Book.csproj" -c Release -o /app/build
+RUN dotnet build "BulkyBook.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ASP.NET-CORE-MVC-Bulky-Book.csproj" -c Release -o /app/publish
+RUN dotnet publish "BulkyBook.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ASP.NET-CORE-MVC-Bulky-Book.dll"]
+ENTRYPOINT ["dotnet", "BulkyBook.dll"]

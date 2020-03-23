@@ -1,0 +1,36 @@
+﻿Projekt C# - ASP.NET CORE 3.1 MVC
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Dzieki tej paczce i zmianie wpisu umozliwa stostowanie zmian po zapisaniu, bez przeladowywania projektu
+( STOP -> RUN)
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+1. Instalujemy nuget pakiet:
+	-> Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.
+2. W pliku "Startup.cs" zmieniamy w metodzie "ConfigureServices" serwis 
+	-> z  " services.AddControllersWithViews();" na "services.AddControllersWithViews().AddRazorRuntimeCompilation();".
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Tworzymy model(tabeli) i po³¹czenie z baz¹ danych MSSQL z wykorzystaniem EntityFrameworkCore
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+1. Instalujemy nuget pakiet:
+	-> Microsoft.EntityFrameworkCore,
+	-> Microsoft.EntityFrameworkCore.SqlServer,
+	-> Microsoft.EntityFrameworkCore.Tools.
+2. Tworzymy model(tabeli) tworz¹c now¹ klasê najlepiej tworz¹c katalog "Model" i dodajemy zmienne:
+==================================================================================================
+using System.ComponentModel.DataAnnotations;
+
+namespace Book_Project_Razor.Model
+{
+    public class Book
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public string Author { get; set; }
+    }
+ 

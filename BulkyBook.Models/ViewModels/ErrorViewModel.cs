@@ -1,6 +1,4 @@
-using System;
-
-namespace ASP.NET_CORE_MVC_Bulky_Book.Models
+namespace BulkyBook.Models.ViewModels
 {
     public class ErrorViewModel
     {

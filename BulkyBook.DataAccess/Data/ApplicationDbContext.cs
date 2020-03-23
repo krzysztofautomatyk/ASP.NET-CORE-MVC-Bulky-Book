@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using BulkyBook.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
-namespace ASP.NET_CORE_MVC_Bulky_Book.Data
+namespace BulkyBook.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -12,5 +11,6 @@ namespace ASP.NET_CORE_MVC_Bulky_Book.Data
             : base(options)
         {
         }
+        public DbSet<Category>  Categories{ get; set; }
     }
 }
